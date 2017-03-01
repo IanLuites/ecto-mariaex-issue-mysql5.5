@@ -49,9 +49,28 @@ Inserts with nil (null) values still get inserted and return success.
 
 Both following examples return a created [success] struct and insert into the database:
 ```elixir
-%Product{} |> Repo.insert!
+iex> %Product{} |> Repo.insert!
+
+16:15:23.579 [debug] QUERY OK db=14.5ms queue=0.2ms
+INSERT INTO `products` () VALUES () []
+%MariaexIssue.Product{__meta__: #Ecto.Schema.Metadata<:loaded, "products">,
+ id: 4, inventory: nil, name: nil}
 ```
 or
 ```elixir
-%Product{name: nil, inventory: nil} |> Repo.insert!
+iex> %Product{name: nil, inventory: nil} |> Repo.insert!
+
+16:15:24.058 [debug] QUERY OK db=12.8ms queue=0.1ms
+INSERT INTO `products` () VALUES () []
+%MariaexIssue.Product{__meta__: #Ecto.Schema.Metadata<:loaded, "products">,
+ id: 4, inventory: nil, name: nil}
+```
+or
+```elixir
+iex> %Product{name: "something"} |> Repo.insert!
+
+16:18:35.069 [debug] QUERY OK db=11.3ms
+INSERT INTO `products` (`name`) VALUES (?) ["something"]
+%MariaexIssue.Product{__meta__: #Ecto.Schema.Metadata<:loaded, "products">,
+ id: 6, inventory: nil, name: "something"}
 ```
