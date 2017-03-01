@@ -15,7 +15,7 @@ The following versions of mysql server seem to work correctly:
 
 ## Usage
 
-Run `./run-insert.sh` to run the test against the local mysql server.
+Run `./run-insert.sh` to run the test against the local mysql server.  
 Run `./reproduce.sh` to build a docker container with mysql 5.5 and run the test.
 
 ## The issue
